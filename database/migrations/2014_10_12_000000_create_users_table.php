@@ -23,6 +23,9 @@ return new class extends Migration
             $table->string('city')->nullable();
             $table->string('state')->nullable();
             $table->string('postcode')->nullable();
+            $table->string('fav_source')->nullable();
+            $table->string('fav_author')->nullable();
+            $table->string('fav_category')->nullable();
             $table->enum('status',['active','inactive'])->default('active');
             $table->boolean('is_admin')->default(false);
             $table->timestamp('email_verified_at')->nullable();

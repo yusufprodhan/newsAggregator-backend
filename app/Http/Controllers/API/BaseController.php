@@ -15,7 +15,7 @@ class BaseController extends Controller
     public function sendResponse($result, $message)
     {
         $response = [
-            'success' => true,
+            'status' => true,
             'data'    => $result,
             'message' => $message,
         ];
@@ -30,7 +30,7 @@ class BaseController extends Controller
     public function sendError($error, $errorMessages = [], $code = 404)
     {
         $response = [
-            'success' => false,
+            'status' => false,
             'message' => $error,
         ];
         if(!empty($errorMessages)){

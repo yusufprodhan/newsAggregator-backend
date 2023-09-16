@@ -7,6 +7,8 @@ use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\VerifyEmailController;
 use App\Http\Controllers\API\ForgotPasswordController;
 use App\Http\Controllers\API\ResetPasswordController;
+use App\Http\Controllers\API\UserController;
+use App\Http\Controllers\API\NewsController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -19,9 +21,8 @@ use App\Http\Controllers\API\ResetPasswordController;
 */
 
 #user authentication
-Route::post('signIn', [AuthController::class, 'signIn']);
-Route::post('signOut', [AuthController::class, 'signOut']);
-Route::post('signUp', [AuthController::class, 'signUp']);
+Route::post('login', [AuthController::class, 'login']);
+Route::post('register', [AuthController::class, 'register']);
 
 #forgot and reset password
 Route::post('password/email', [ForgotPasswordController::class,'sendResetLinkEmail']);
@@ -38,10 +39,19 @@ Route::post('/email/verify/resend', function (Request $request) {
     return back()->with('message', 'Verification link sent!');
 })->middleware(['auth:api', 'throttle:6,1'])->name('verification.send');
 
+#news list
+Route::post('news-list',[NewsController::class,'newsList']);
+
 #user authorization routes
 Route::group(['middleware' => ['auth:sanctum']], function () {
-    #upate user data
-    Route::post('user/update',[AuthController::class, 'updateUserData']);
-    #reset password
-    Route::post('reset/password',[AuthController::class,'resetPassword']);
+    #user logout
+    Route::post('logout', [UserController::class, 'logout']);
+
+    #user password reset
+    Route::post('user/reset-password',[UserController::class,'resetPassword']);
+
+    #user resource route
+    Route::apiResource('user', UserController::class)->only([
+        'index', 'create', 'store', 'update', 'destroy'
+    ]);
 });
