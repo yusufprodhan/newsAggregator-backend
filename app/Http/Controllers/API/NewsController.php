@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Helpers\Helper;
 use App\Http\Controllers\API\BaseController as BaseController;
 use App\Models\News;
 use Carbon\Carbon;
@@ -89,6 +90,8 @@ class NewsController extends BaseController
             $news =$query
                     ->orderBy('publishedAt','DESC')
                     ->paginate($pageSize);
+            #all categories
+            $news['categories'] = Helper::$categories;
 
           return  $this->sendResponse($news,'test');
         }catch (\Throwable $th){

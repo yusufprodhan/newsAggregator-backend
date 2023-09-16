@@ -40,7 +40,7 @@ Route::post('/email/verify/resend', function (Request $request) {
 })->middleware(['auth:api', 'throttle:6,1'])->name('verification.send');
 
 #news list
-Route::post('news-list',[NewsController::class,'newsList']);
+Route::get('news-list',[NewsController::class,'newsList']);
 
 #user authorization routes
 Route::group(['middleware' => ['auth:sanctum']], function () {
