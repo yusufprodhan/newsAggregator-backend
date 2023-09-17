@@ -91,9 +91,12 @@ class NewsController extends BaseController
                     ->orderBy('publishedAt','DESC')
                     ->paginate($pageSize);
             #all categories
-            $news['categories'] = Helper::$categories;
+            $data['news'] = $news;
+            $data['categories'] = Helper::$categories;
+            $data['author'] = Helper::getAuthor();
+            $data['source'] = Helper::getSource();
 
-          return  $this->sendResponse($news,'test');
+          return  $this->sendResponse($data,__('locale.exceptions.news_list'));
         }catch (\Throwable $th){
             return $this->sendError($th->getMessage(),['reason'=>$th->getMessage()],500);
         }

@@ -30,5 +30,6 @@ return [
             'invalid_image'                 => 'Invalid image. Please update correct one.',
             'registration_disabled'         => 'Registration is disabled.',
             'user_verification'             => 'User verification is disabled.',
+            'news_list'                     =>  'News List',
         ],
 ];
