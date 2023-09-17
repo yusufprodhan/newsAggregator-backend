@@ -45,37 +45,37 @@ class NewsController extends BaseController
             if($request->input('category') !== null){
                 #user filtered category condition
                 $query->when($request->input('category'), function ($q) use ($request) {
-                    return $q->orWhere('category',$request->input('category'));
+                    return $q->orWhereIn('category',explode(',',$request->input('category')));
                 });
             }else{
                 #user favourite category condition
                 $query->when($user && $user->fav_category, function ($q) use ($user) {
-                    return $q->orwhere('category',$user->fav_category);
+                    return $q->orWhereIn('category',json_decode($user->fav_category));
                 });
             }
             #source condition
             if($request->input('source_name') !== null){
                 #user filtered source condition
                 $query->when($request->input('source_name'), function ($q) use ($request) {
-                    return $q->orWhere('source_name',$request->input('source_name'));
+                    return $q->orWhereIn('source_name',explode(',',$request->input('source_name')));
                 });
             }else{
                 #user favourite source condition
                 $query->when($user && $user->fav_source, function ($q) use ($user) {
-                    return $q->orWhere('source_name',$user->fav_source);
+                    return $q->orWhereIn('source_name',json_decode($user->fav_source));
                 });
             }
 
             #author condition
             if($request->input('author') !== null){
                 #user filtered author condition
-                $query->when($user && $user->fav_author, function ($q) use ($request) {
-                    return $q->orwhere('author',$request->input('author'));
+                $query->when($request->input('author'), function ($q) use ($request) {
+                    return $q->orWhereIn('author',explode(',',$request->input('author')));
                 });
             }else{
                 #user favourite author condition
                 $query->when($user && $user->fav_author, function ($q) use ($user) {
-                    return $q->orwhere('author',$user->fav_author);
+                    return $q->orWhereIn('author',json_decode($user->fav_author));
                 });
             }
             #published condition

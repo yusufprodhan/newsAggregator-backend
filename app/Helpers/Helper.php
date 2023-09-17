@@ -7,7 +7,36 @@ use App\Models\News;
 class Helper
 {
     #intialize all categories
-    public static array $categories = array('business', 'entertainment', 'general', 'health', 'science', 'sports', 'technology');
+    public static array $categories = array(
+                                                array(
+                                                    'name' => 'Business',
+                                                    'code'=>'business'
+                                                ),
+                                                array(
+                                                    'name' => 'Entertainment',
+                                                    'code'=>'entertainment'
+                                                ),
+                                                array(
+                                                    'name' => 'General',
+                                                    'code'=>'general'
+                                                ),
+                                                array(
+                                                    'name' => 'Health',
+                                                    'code'=>'health'
+                                                ),
+                                                array(
+                                                    'name' => 'Science',
+                                                    'code'=>'science'
+                                                ),
+                                                array(
+                                                    'name' => 'Sports',
+                                                    'code'=>'sports'
+                                                ),
+                                                array(
+                                                    'name' => 'Technology',
+                                                    'code'=>'technology'
+                                                ),
+                                            );
 
     /**
      * @get all author
@@ -16,7 +45,16 @@ class Helper
      */
     public static function getAuthor(): array|object
     {
-        return News::whereNotNull('author')->groupBy('author')->get('author')->toArray();
+        $author = [];
+        $data =  News::whereNotNull('author')->groupBy('author')->get('author')->toArray();
+        foreach ($data as $d){
+            $array = array(
+                'name' => $d["author"],
+                'code'=>$d["author"]
+            );
+            $author[] = $array;
+        }
+        return $author;
     }
 
     /**
@@ -26,6 +64,15 @@ class Helper
      */
     public static function getSource(): array|object
     {
-        return News::whereNotNull('source_name')->groupBy('source_name')->get('source_name')->toArray();
+        $source = [];
+        $data =  News::whereNotNull('source_name')->groupBy('source_name')->get('source_name')->toArray();
+        foreach ($data as $d){
+            $array = array(
+                'name' => $d["source_name"],
+                'code'=>$d["source_name"]
+            );
+            $source[] = $array;
+        }
+        return $source;
     }
 }

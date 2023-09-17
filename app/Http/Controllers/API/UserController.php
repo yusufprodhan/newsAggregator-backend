@@ -73,7 +73,18 @@ class UserController extends BaseController
                 return $this->sendError(__('locale.exceptions.user_unauthorized'),['data'=>__('locale.exceptions.user_unauthorized')] );
             }
             #set and update request data
-            $inputs = $request->only('name','gender','dob','about_me','occupation','city','state','postcode','fav_source','fav_author','fav_category');
+            $inputs = $request->only('name','gender','dob','about_me','occupation','city','state','postcode');
+
+            #set user favourite items
+            if($request->input('fav_source')){
+                $inputs['fav_source'] = json_encode($request->input('fav_source'));
+            }
+            if($request->input('fav_author')){
+                $inputs['fav_author'] = json_encode($request->input('fav_author'));
+            }
+            if($request->input('fav_category')){
+                $inputs['fav_category'] = json_encode($request->input('fav_category'));
+            }
             $user->update($inputs);
             return $this->sendResponse($user, __('locale.exceptions.user_data_updated_mgs'));
         }catch (\Throwable $th) {

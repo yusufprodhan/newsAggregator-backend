@@ -30,10 +30,9 @@ class NewsCron extends Command
         \Log::info("Cron is working fine!");
 
         #categories
-        $categories = Helper::$categories;
+        $categories = ['business','entertainment','general','health','science','sports','technology'];
 
         foreach ($categories as $category){
-
             $url = "https://newsapi.org/v2/top-headlines?apiKey=ebf8e79400204ed1bbce63a94522fcc0&category=$category&language=en";
             //  Initiate curl
             $ch = curl_init();
@@ -61,9 +60,9 @@ class NewsCron extends Command
                 $data_array['url'] = $d['url'];
                 $data_array['urlToImage'] = $d['urlToImage'];
                 $data_array['publishedAt'] = date('Y-m-d h:m:s', strtotime($d['publishedAt']));
-                array_push($insert_data, $data_array);
+                $insert_data[] = $data_array;
             }
-            News::insert($insert_data);
+            News::upsert($insert_data,['title','description','url','urlToImage'],['source_id','source_name','author','category','content','publishedAt']);
         }
         return 0;
     }

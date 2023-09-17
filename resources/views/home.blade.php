@@ -21,11 +21,11 @@
             <div style="position: relative;left: 700px;">
             @php
                 use App\Helpers\Helper;
-                $author = Helper::getSource();
+                $author = Helper::getAuthor();
                 dd($author);
 //                foreach ($author as $a){
-//                    if($a['author']){
-//                        echo $a['author'].'\n';
+//                    if($a['code']){
+//                        echo $a['code'].'<br/>';
 //                    }
 //                }
             @endphp
