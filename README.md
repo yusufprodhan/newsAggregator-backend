@@ -64,15 +64,19 @@ This is an example of how you may give instructions on setting up your project l
  ```sh
    git clone https://github.com/yusufprodhan/newsAggregator-backend.git
    ```
-2. Install composer packages
+2. ENV configuration
+ ```sh
+   Create database like new_aggregator and put your mySql username and password
+   ```
+3. Install composer packages
  ```sh
    composer install
    ```
-3. Run schedule to get news
+4. Run schedule to get news
  ```sh
    php artisan schedule:run 
    ```
-4. Run the project
+5. Run the project
  ```sh
    php artisan serve
    ```
