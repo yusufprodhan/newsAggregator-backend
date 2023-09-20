@@ -15,7 +15,7 @@ class UserSeeder extends Seeder
     {
 
         // Default password
-        $defaultPassword = app()->environment('production') ? Str::random() : '12345678';
+        $defaultPassword = app()->environment('production') ? Str::random() : '123456';
 
         // Create demo user
         $user = new User();
