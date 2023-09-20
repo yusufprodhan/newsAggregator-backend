@@ -85,9 +85,16 @@ This is an example of how you may give instructions on setting up your project l
 ## Deploy with docker
 1. Install Docker on your machine && start docker
 2. Clone the project repo
-3. Run the command: 
+3. Go to project folder
+4. Run the command: 
 ```sh
-   make data
+   ./vendor/bin/sail up
+   ```
+5. Go to project container with terminal
+6. Run the command:
+```sh
+   php artisan migrate:fresh --seed
+   php artisan schedule:run
    ```
 
 ## License
