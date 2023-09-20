@@ -17,19 +17,7 @@
     </head>
     <body class="antialiased">
         <div class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
-            <h style="font-size: 40px; font-weight: bold;">Welcome to news aggregator</h>
-            <div style="position: relative;left: 700px;">
-            @php
-                use App\Helpers\Helper;
-                $author = Helper::getAuthor();
-                dd($author);
-//                foreach ($author as $a){
-//                    if($a['code']){
-//                        echo $a['code'].'<br/>';
-//                    }
-//                }
-            @endphp
-            </div>
+            <h1 style="font-size: 40px; font-weight: bold;">Welcome to news aggregator</h1>
         </div>
     </body>
 </html>
