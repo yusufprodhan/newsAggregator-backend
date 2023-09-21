@@ -77,11 +77,15 @@ This is an example of how you may give instructions on setting up your project l
  ```sh
    composer install
    ```
-4. Run schedule to get news
+4. Run db migration
+ ```sh
+   php artisan migrate:fresh --seed
+   ```
+5. Run schedule to get news
  ```sh
    php artisan schedule:run 
    ```
-5. Run the project
+6. Run the project
  ```sh
    php artisan serve
    ```
