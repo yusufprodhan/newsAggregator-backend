@@ -66,7 +66,12 @@ This is an example of how you may give instructions on setting up your project l
    ```
 2. env configuration
  ```sh
-   composer install
+  DB_CONNECTION=mysql
+  DB_HOST=127.0.0.1
+  DB_PORT=3306
+  DB_DATABASE=new_aggregator
+  DB_USERNAME=root
+  DB_PASSWORD=password
    ```
 3. Install composer packages
  ```sh
