@@ -58,7 +58,6 @@ This is an example of how you may give instructions on setting up your project l
 ## Deploy in local
     ## Prerequisites
         - PHP 8
-        - laravel 10
         - mySql 8
 
 1. Clone the repo from
